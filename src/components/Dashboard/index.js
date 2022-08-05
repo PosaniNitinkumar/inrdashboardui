@@ -3,6 +3,8 @@ import { Line } from "rc-progress";
 import { useState } from "react";
 import "reactjs-popup/dist/index.css";
 import Popup from "reactjs-popup";
+import Axios from "axios";
+import Cookies from "js-cookie";
 import { MdShoppingCart } from "react-icons/md";
 import { MdDirectionsBus } from "react-icons/md";
 import { IoMdHome } from "react-icons/io";
@@ -10,10 +12,27 @@ import { AiFillPlayCircle } from "react-icons/ai";
 import { BiDish } from "react-icons/bi";
 
 function Dashboard() {
-  const [name, setName] = useState("");
-  const [age, setAge] = useState(0);
-  const addfriend = () => {
-    console.log("hello");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const signUpButton = async () => {
+    await Axios.post("https://inrdashboardui.herokuapp.com/users/signup", {
+      username: "nitin",
+      email: email,
+      password: password,
+    })
+      .then((data) => console.log(data.data.token))
+      .then(() => alert("succesful sign up"))
+      .catch((error) => console.log(error.response.data.message));
+  };
+  const signInButton = () => {
+    Axios.post("https://inrdashboardui.herokuapp.com/users/signin", {
+      email: email,
+      password: password,
+    })
+
+      .then((data) => console.log(data.data.token))
+      .then(() => alert("succesful sign in"))
+      .catch((error) => alert(error.response.data.message));
   };
   return (
     <div className="background-container">
@@ -69,7 +88,7 @@ function Dashboard() {
                         className="container_input"
                         type="text"
                         onChange={(event) => {
-                          setName(event.target.value);
+                          setEmail(event.target.value);
                         }}
                       />
                       <p className="email">Password</p>
@@ -77,14 +96,14 @@ function Dashboard() {
                         type="number"
                         className="container_input"
                         onChange={(event) => {
-                          setAge(event.target.value);
+                          setPassword(event.target.value);
                         }}
                       />
                       <div className="button_container">
-                        <button onClick={addfriend} className="button">
+                        <button onClick={signUpButton} className="button">
                           Sign up
                         </button>
-                        <button onClick={addfriend} className="button">
+                        <button onClick={signInButton} className="button">
                           Sign in
                         </button>
                         <button
