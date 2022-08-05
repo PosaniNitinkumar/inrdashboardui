@@ -1,0 +1,104 @@
+.datetext {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.125vw;
+  letter-spacing: 0.342857px;
+  margin-top: 1.1vh;
+  color: #101010;
+  mix-blend-mode: normal;
+  opacity: 0.5;
+}
+.second {
+  margin-top: 7vh;
+}
+.hoy {
+  font-family: "ABeeZee";
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.3vw;
+  letter-spacing: 0.3px;
+  color: #262a41;
+}
+.line {
+  margin-top: 1.2vh;
+  border: 0.5px solid #dedede;
+  width: 100%;
+}
+.dots {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.dotimage {
+  margin-left: 5px;
+}
+.MdOutlineShoppingCarticon {
+  background-color: #32a7e2;
+  color: #ffffff;
+  width: 1.75vw;
+  height: 1.75vw;
+  padding: 1vw;
+  border-radius: 3vw;
+}
+.icon2 {
+  background-color: #b548c6;
+}
+.icon3 {
+  background-color: #ff8700;
+}
+.icon4 {
+  background-color: #dc3434;
+}
+.icon5 {
+  background-color: #4ba83d;
+}
+
+.iconcontainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 2vh;
+}
+.iconcontainer2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 31.5vw;
+}
+.iconcontainer2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.flow {
+  margin-left: 1.2vw;
+}
+.icondetails2 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.1vw;
+  letter-spacing: 0.342857px;
+  color: #273240;
+  padding-bottom: 5px;
+}
+.flowitemtext {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.15vw;
+  letter-spacing: 0.342857px;
+  color: #273240;
+}
+.flowitemtextdate {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1vw;
+  letter-spacing: 0.5px;
+  color: #404852;
+  mix-blend-mode: normal;
+  opacity: 0.5;
+}
