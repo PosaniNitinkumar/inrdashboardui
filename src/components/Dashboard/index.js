@@ -14,23 +14,32 @@ import { BiDish } from "react-icons/bi";
 function Dashboard() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoggedIn, setLoggedin] = useState(true);
+  const onClickLogout = () => {
+    Cookies.remove("jwt_token");
+    setLoggedin(true);
+    alert("succesfully Logged Out");
+  };
   const signUpButton = async () => {
     await Axios.post("https://inrdashboardui.herokuapp.com/users/signup", {
       username: "nitin",
       email: email,
       password: password,
     })
-      .then((data) => console.log(data.data.token))
       .then(() => alert("succesful sign up"))
-      .catch((error) => console.log(error.response.data.message));
+      .catch((error) => alert(error.response.data.message));
   };
   const signInButton = () => {
     Axios.post("https://inrdashboardui.herokuapp.com/users/signin", {
       email: email,
       password: password,
     })
-
-      .then((data) => console.log(data.data.token))
+      .then((data) =>
+        Cookies.set("jwt_token", data.data.token, {
+          expires: 30,
+        })
+      )
+      .then(() => setLoggedin(false))
       .then(() => alert("succesful sign in"))
       .catch((error) => alert(error.response.data.message));
   };
@@ -59,66 +68,76 @@ function Dashboard() {
             <li className="list list2">Configuracion</li>
           </ul>
           <div className="popup-container">
-            <Popup
-              modal
-              trigger={
-                <button type="button" className="login bu">
-                  Login
-                </button>
-              }
-            >
-              {(close) => (
-                <div className="popcontent">
-                  <div className="smoke">
-                    <img
-                      src="https://res.cloudinary.com/dwjfzvlsd/image/upload/v1659639139/Vector_idvcjd.png"
-                      alt="smokelogo"
-                      className="smokeimagea"
-                    />
-                    <img
-                      src="https://res.cloudinary.com/dwjfzvlsd/image/upload/v1659708068/Vector_1_t9bntq.png"
-                      alt="smokelogo"
-                      className="smokeimage"
-                    />
-                  </div>
-                  <div className="App">
-                    <div className="container">
-                      <p className="email">Email</p>
-                      <input
-                        className="container_input"
-                        type="text"
-                        onChange={(event) => {
-                          setEmail(event.target.value);
-                        }}
+            {isLoggedIn ? (
+              <Popup
+                modal
+                trigger={
+                  <button type="button" className="login bu">
+                    Login
+                  </button>
+                }
+              >
+                {(close) => (
+                  <div className="popcontent">
+                    <div className="smoke">
+                      <img
+                        src="https://res.cloudinary.com/dwjfzvlsd/image/upload/v1659639139/Vector_idvcjd.png"
+                        alt="smokelogo"
+                        className="smokeimagea"
                       />
-                      <p className="email">Password</p>
-                      <input
-                        type="number"
-                        className="container_input"
-                        onChange={(event) => {
-                          setPassword(event.target.value);
-                        }}
+                      <img
+                        src="https://res.cloudinary.com/dwjfzvlsd/image/upload/v1659708068/Vector_1_t9bntq.png"
+                        alt="smokelogo"
+                        className="smokeimage"
                       />
-                      <div className="button_container">
-                        <button onClick={signUpButton} className="button">
-                          Sign up
-                        </button>
-                        <button onClick={signInButton} className="button">
-                          Sign in
-                        </button>
-                        <button
-                          type="button"
-                          className="button"
-                          onClick={() => close()}
-                        >
-                          Close
-                        </button>
+                    </div>
+                    <div className="App">
+                      <div className="container">
+                        <p className="email">Email</p>
+                        <input
+                          className="container_input"
+                          type="text"
+                          onChange={(event) => {
+                            setEmail(event.target.value);
+                          }}
+                        />
+                        <p className="email">Password</p>
+                        <input
+                          type="number"
+                          className="container_input"
+                          onChange={(event) => {
+                            setPassword(event.target.value);
+                          }}
+                        />
+                        <div className="button_container">
+                          <button onClick={signUpButton} className="button">
+                            Sign up
+                          </button>
+                          <button onClick={signInButton} className="button">
+                            Sign in
+                          </button>
+                          <button
+                            type="button"
+                            className="button"
+                            onClick={() => close()}
+                          >
+                            Close
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              )}
-            </Popup>
+                )}
+              </Popup>
+            ) : (
+              <button
+                type="button"
+                className="login bu"
+                onClick={onClickLogout}
+              >
+                Logout
+              </button>
+            )}
           </div>
         </div>
         <div className="dashboarddisplay">
