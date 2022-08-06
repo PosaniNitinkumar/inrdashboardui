@@ -6,6 +6,7 @@ import Axios from "axios";
 import Cookies from "js-cookie";
 import Spend from "../SpendStatistics/Spend";
 import DashboardDetails from "../DashboardDetails/DashboardDetails";
+import { AiOutlinePlusCircle } from "react-icons/ai";
 
 function Dashboard() {
   const [username, setUsername] = useState("");
@@ -162,7 +163,28 @@ function Dashboard() {
         </div>
         <div className="dashboarddisplay">
           <div className="dashboarddisplay1">
-            <h1 className="dashboardtext">Dashboard</h1>
+            <div className="dashboardcontainer">
+              <h1 className="dashboardtext">Dashboard</h1>
+              <div className="notifi_con">
+                <img
+                  src="https://res.cloudinary.com/dwjfzvlsd/image/upload/v1659760480/img1_eo0cua.png"
+                  alt=""
+                  className="notifi"
+                />
+                <img
+                  src="https://res.cloudinary.com/dwjfzvlsd/image/upload/v1659760480/Bitmap-1_hwcekl.png"
+                  alt=""
+                  className="notifi"
+                />
+                <img
+                  src="https://res.cloudinary.com/dwjfzvlsd/image/upload/v1659760480/Bitmap_mx14hn.png"
+                  alt=""
+                  className="notifi"
+                />
+                <AiOutlinePlusCircle className="addicon" />
+              </div>
+            </div>
+
             {isLoggedIn ? <h1>Sign in to get data</h1> : <DashboardDetails />}
           </div>
           <div className="dashboarddisplay2">

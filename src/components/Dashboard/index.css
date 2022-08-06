@@ -328,17 +328,18 @@ ul {
   cursor: pointer;
 }
 .popup-content {
-  background-color: rgb(255, 255, 255);
   border-radius: 25px;
   padding: 5px;
-  width: 250px;
+  background: #ffffff;
+  height: 581px !important;
+  width: 476px !important;
 }
 .popcontent {
   height: 581px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 .smoke {
   display: flex;
@@ -355,8 +356,6 @@ ul {
   height: 72px;
 }
 .container {
-  height: 300px;
-  width: px;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -398,4 +397,28 @@ ul {
   border-radius: 5px;
   width: 100px;
   height: 48px;
+}
+.notifi {
+  border: 3.5px solid #ffffff;
+  border-radius: 2vw;
+  width: 2.25vw;
+  margin-right: -10px;
+}
+.notifi_con {
+  display: flex;
+  align-items: center;
+  margin-right: -1.25vw;
+}
+.addicon {
+  color: #d2dce8;
+  width: 2.6vw;
+  height: 2.6vw;
+  padding: 0.75vw;
+  border-radius: 3vw;
+}
+.dashboardcontainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
