@@ -121,3 +121,8 @@
   align-items: center;
   margin-right: -1.25vw;
 }
+.dashboardcontainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
