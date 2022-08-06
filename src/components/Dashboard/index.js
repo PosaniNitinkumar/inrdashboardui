@@ -13,7 +13,6 @@ function Dashboard() {
   const [password, setPassword] = useState("");
   const [isLoggedIn, setLoggedin] = useState(true);
   const [LoginSetUp, setLoginsetup] = useState(true);
-  const [SignupSetUp, setSignupSetUp] = useState(true);
 
   const onClickLogout = () => {
     Cookies.remove("jwt_token");
@@ -39,6 +38,7 @@ function Dashboard() {
       password: password,
     })
       .then(() => alert("succesful sign up"))
+      .then(() => setLoginsetup(true))
       .catch((error) => alert(error.response.data.message));
   };
 
