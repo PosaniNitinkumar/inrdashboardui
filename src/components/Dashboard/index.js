@@ -6,31 +6,24 @@ import Axios from "axios";
 import Cookies from "js-cookie";
 import Spend from "../SpendStatistics/Spend";
 import DashboardDetails from "../DashboardDetails/DashboardDetails";
+import { BiShow } from "react-icons/bi";
 
 function Dashboard() {
+  /*User Input*/
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  /*Login/Logout Status*/
   const [isLoggedIn, setLoggedin] = useState(true);
+
+  /*Login/Sign Up Toggle*/
   const [LoginSetUp, setLoginsetup] = useState(true);
 
-  const onClickLogout = () => {
-    Cookies.remove("jwt_token");
-    setLoggedin(true);
-    alert("succesfully Logged Out");
-    setUsername("");
-    setEmail("");
-  };
+  /*Password show Toggle*/
+  const [passwordShown, setPasswordShown] = useState(false);
 
-  useEffect(() => {
-    const token = Cookies.get("jwt_token");
-    if (token === undefined) {
-      setLoggedin(true);
-    } else {
-      setLoggedin(false);
-    }
-  }, []);
-
+  /*Sign up, Update state and alert the User*/
   const signUpButton = async () => {
     await Axios.post("https://inrdashboardui.herokuapp.com/users/signup", {
       username: username,
@@ -42,6 +35,7 @@ function Dashboard() {
       .catch((error) => alert(error.response.data.message));
   };
 
+  /*Sign in, Update state and alert the User*/
   const signInButton = () => {
     Axios.post("https://inrdashboardui.herokuapp.com/users/signin", {
       email: email,
@@ -57,9 +51,29 @@ function Dashboard() {
       .catch((error) => alert(error.response.data.message));
   };
 
+  /*LogOut and clear jwtToken from cookies*/
+  const onClickLogout = () => {
+    Cookies.remove("jwt_token");
+    setLoggedin(true);
+    alert("succesfully Logged Out");
+    setUsername("");
+    setEmail("");
+  };
+
+  /*As the cookies expiry is set to 30min, This function will automatically Logout if the cookies expire*/
+  useEffect(() => {
+    const token = Cookies.get("jwt_token");
+    if (token === undefined) {
+      setLoggedin(true);
+    } else {
+      setLoggedin(false);
+    }
+  }, []);
+
   return (
     <div className="background-container">
       <div className="main-container">
+        {/*Side Header*/}
         <div className="side-header">
           <div>
             <div class="item">
@@ -82,6 +96,8 @@ function Dashboard() {
               </div>
             )}
           </div>
+
+          {/*Side Header Product Options*/}
           <ul className="userwish2">
             <li className="list">Dashboard</li>
             <li className="list list2">Gastos</li>
@@ -90,6 +106,8 @@ function Dashboard() {
             <li className="list list2">Cuentas</li>
             <li className="list list2">Configuracion</li>
           </ul>
+
+          {/*Login/Logout Popup*/}
           <div className="popup-container">
             {isLoggedIn ? (
               <Popup
@@ -134,6 +152,8 @@ function Dashboard() {
                         </button>
                       </div>
                     </div>
+
+                    {/*Login Popup Login and Signup Details*/}
                     <div className="App">
                       <div className="container">
                         {LoginSetUp ? (
@@ -149,11 +169,18 @@ function Dashboard() {
                               />
                               <p className="email">Password</p>
                               <input
-                                type="number"
+                                type={passwordShown ? "text" : "password"}
                                 className="container_input"
                                 onChange={(event) => {
                                   setPassword(event.target.value);
                                 }}
+                              />
+
+                              <BiShow
+                                onClick={() => {
+                                  setPasswordShown(!passwordShown);
+                                }}
+                                className="showicon"
                               />
                             </div>
                             <div className="button_container">
@@ -192,11 +219,17 @@ function Dashboard() {
                             />
                             <p className="email">Password</p>
                             <input
-                              type="number"
+                              type={passwordShown ? "text" : "password"}
                               className="container_input"
                               onChange={(event) => {
                                 setPassword(event.target.value);
                               }}
+                            />
+                            <BiShow
+                              onClick={() => {
+                                setPasswordShown(!passwordShown);
+                              }}
+                              className="showicon"
                             />
                             <div className="button_container">
                               <button
@@ -231,20 +264,24 @@ function Dashboard() {
             )}
           </div>
         </div>
+
+        {/*Dashboard Details*/}
         <div className="dashboarddisplay">
           <div className="dashboarddisplay1">
             {isLoggedIn ? (
               <div className="withoutlogincontainer">
-                <p className="withoutlogin">Login in to Access Data</p>
+                <p className="withoutlogin">Login in to Access the Data</p>
               </div>
             ) : (
               <DashboardDetails />
             )}
           </div>
+
+          {/*Spending Statistic Details*/}
           <div className="dashboarddisplay2">
             {isLoggedIn ? (
               <div className="withoutlogincontainer">
-                <p className="withoutlogin">Login in to Access Data</p>
+                <p className="withoutlogin">Login in to Access the Data</p>
               </div>
             ) : (
               <Spend />
