@@ -74,3 +74,26 @@
   background-color: inherit;
   cursor: pointer;
 }
+.boxes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.boxpot {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: -4vw;
+  margin-bottom: 1.5vw;
+}
+.boximage1 {
+  width: 5.5vw;
+}
+.boximage2 {
+  width: 7.5vw;
+}
+.boximage3 {
+  width: 4.5vw;
+}

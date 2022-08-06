@@ -68,6 +68,26 @@ const Spend = () => (
       />
     </div>
     <div className="finalcard">
+      <div className="boxpot">
+        <div className="boxes">
+          <img
+            src="https://res.cloudinary.com/dwjfzvlsd/image/upload/v1659762463/blue_abl5tv.png"
+            alt=""
+            className="boximage1"
+          />
+          <img
+            src="https://res.cloudinary.com/dwjfzvlsd/image/upload/v1659762463/brown_bwyzhj.png"
+            alt=""
+            className="boximage2"
+          />
+        </div>
+        <img
+          src="https://res.cloudinary.com/dwjfzvlsd/image/upload/v1659762463/pot_hzum2c.png"
+          alt=""
+          className="boximage3"
+        />
+      </div>
+
       <p className="sendtext">Como ahorrar</p>
       <p className="sendpara">
         Activa este metodo para realizar ahorrosy verifica los procesos que te
