@@ -2,6 +2,7 @@ import "./Spend.css";
 import { Line } from "rc-progress";
 const Spend = () => (
   <div>
+    <p className="spend">Spend Statistics:</p>
     <div>
       <div className="progressbar">
         <p className="listing">Comida</p>

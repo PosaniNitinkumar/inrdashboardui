@@ -4,9 +4,31 @@ import { MdDirectionsBus } from "react-icons/md";
 import { IoMdHome } from "react-icons/io";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { BiDish } from "react-icons/bi";
+import { AiOutlinePlusCircle } from "react-icons/ai";
 
 const DashboardDetails = () => (
   <div>
+    <div className="dashboardcontainer">
+      <h1 className="dashboardtext">Dashboard</h1>
+      <div className="notifi_con">
+        <img
+          src="https://res.cloudinary.com/dwjfzvlsd/image/upload/v1659760480/img1_eo0cua.png"
+          alt=""
+          className="notifi"
+        />
+        <img
+          src="https://res.cloudinary.com/dwjfzvlsd/image/upload/v1659760480/Bitmap-1_hwcekl.png"
+          alt=""
+          className="notifi"
+        />
+        <img
+          src="https://res.cloudinary.com/dwjfzvlsd/image/upload/v1659760480/Bitmap_mx14hn.png"
+          alt=""
+          className="notifi"
+        />
+        <AiOutlinePlusCircle className="addicon" />
+      </div>
+    </div>
     <p className="datetext">01-15 July, 2022</p>
     <div className="second">
       <div className="dots">

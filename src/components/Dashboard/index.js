@@ -6,13 +6,14 @@ import Axios from "axios";
 import Cookies from "js-cookie";
 import Spend from "../SpendStatistics/Spend";
 import DashboardDetails from "../DashboardDetails/DashboardDetails";
-import { AiOutlinePlusCircle } from "react-icons/ai";
 
 function Dashboard() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoggedIn, setLoggedin] = useState(true);
+  const [LoginSetUp, setLoginsetup] = useState(true);
+  const [SignupSetUp, setSignupSetUp] = useState(true);
 
   const onClickLogout = () => {
     Cookies.remove("jwt_token");
@@ -69,8 +70,17 @@ function Dashboard() {
                 className="usericon"
               />
             </div>
-            <h1 className="Celeste">Hi, User</h1>
-            <p className="Celestegmail">email</p>
+            {isLoggedIn ? (
+              <div>
+                <h1 className="Celeste">Hi, User</h1>
+                <p className="Celestegmail">user@gmail.com</p>
+              </div>
+            ) : (
+              <div>
+                <h1 className="Celeste">Hi, {username}</h1>
+                <p className="Celestegmail">{email}</p>
+              </div>
+            )}
           </div>
           <ul className="userwish2">
             <li className="list">Dashboard</li>
@@ -92,59 +102,119 @@ function Dashboard() {
               >
                 {(close) => (
                   <div className="popcontent">
-                    <div className="smoke">
-                      <img
-                        src="https://res.cloudinary.com/dwjfzvlsd/image/upload/v1659639139/Vector_idvcjd.png"
-                        alt="smokelogo"
-                        className="smokeimagea"
-                      />
-                      <img
-                        src="https://res.cloudinary.com/dwjfzvlsd/image/upload/v1659708068/Vector_1_t9bntq.png"
-                        alt="smokelogo"
-                        className="smokeimage"
-                      />
+                    <div>
+                      <div className="smoke">
+                        <img
+                          src="https://res.cloudinary.com/dwjfzvlsd/image/upload/v1659639139/Vector_idvcjd.png"
+                          alt="smokelogo"
+                          className="smokeimagea"
+                        />
+                        <img
+                          src="https://res.cloudinary.com/dwjfzvlsd/image/upload/v1659708068/Vector_1_t9bntq.png"
+                          alt="smokelogo"
+                          className="smokeimage"
+                        />
+                      </div>
+                      <div className="button_container">
+                        <button
+                          onClick={() => {
+                            setLoginsetup(true);
+                          }}
+                          className="button1"
+                        >
+                          Login
+                        </button>
+                        <button
+                          onClick={() => {
+                            setLoginsetup(false);
+                          }}
+                          className="button1"
+                        >
+                          Signup
+                        </button>
+                      </div>
                     </div>
                     <div className="App">
                       <div className="container">
-                        <p className="email">Username</p>
-                        <input
-                          className="container_input"
-                          type="text"
-                          onChange={(event) => {
-                            setUsername(event.target.value);
-                          }}
-                        />
-                        <p className="email">Email</p>
-                        <input
-                          className="container_input"
-                          type="text"
-                          onChange={(event) => {
-                            setEmail(event.target.value);
-                          }}
-                        />
-                        <p className="email">Password</p>
-                        <input
-                          type="number"
-                          className="container_input"
-                          onChange={(event) => {
-                            setPassword(event.target.value);
-                          }}
-                        />
-                        <div className="button_container">
-                          <button onClick={signUpButton} className="button">
-                            Sign up
-                          </button>
-                          <button onClick={signInButton} className="button">
-                            Sign in
-                          </button>
-                          <button
-                            type="button"
-                            className="button"
-                            onClick={() => close()}
-                          >
-                            Close
-                          </button>
-                        </div>
+                        {LoginSetUp ? (
+                          <div className="loginwidth">
+                            <div>
+                              <p className="email">Email</p>
+                              <input
+                                className="container_input"
+                                type="text"
+                                onChange={(event) => {
+                                  setEmail(event.target.value);
+                                }}
+                              />
+                              <p className="email">Password</p>
+                              <input
+                                type="number"
+                                className="container_input"
+                                onChange={(event) => {
+                                  setPassword(event.target.value);
+                                }}
+                              />
+                            </div>
+                            <div className="button_container">
+                              <button
+                                onClick={signInButton}
+                                className="button1"
+                              >
+                                Sign in
+                              </button>
+                              <button
+                                type="button"
+                                className="button1"
+                                onClick={() => close()}
+                              >
+                                Close
+                              </button>
+                            </div>
+                          </div>
+                        ) : (
+                          <div>
+                            <p className="email">Username</p>
+                            <input
+                              className="container_input"
+                              type="text"
+                              onChange={(event) => {
+                                setUsername(event.target.value);
+                              }}
+                            />
+                            <p className="email">Email</p>
+                            <input
+                              className="container_input"
+                              type="text"
+                              onChange={(event) => {
+                                setEmail(event.target.value);
+                              }}
+                            />
+                            <p className="email">Password</p>
+                            <input
+                              type="number"
+                              className="container_input"
+                              onChange={(event) => {
+                                setPassword(event.target.value);
+                              }}
+                            />
+                            <div className="button_container">
+                              <button
+                                onClick={signUpButton}
+                                className="button1"
+                              >
+                                Sign up
+                              </button>
+                              <button
+                                type="button"
+                                className="button1"
+                                onClick={() => close()}
+                              >
+                                Close
+                              </button>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -163,33 +233,22 @@ function Dashboard() {
         </div>
         <div className="dashboarddisplay">
           <div className="dashboarddisplay1">
-            <div className="dashboardcontainer">
-              <h1 className="dashboardtext">Dashboard</h1>
-              <div className="notifi_con">
-                <img
-                  src="https://res.cloudinary.com/dwjfzvlsd/image/upload/v1659760480/img1_eo0cua.png"
-                  alt=""
-                  className="notifi"
-                />
-                <img
-                  src="https://res.cloudinary.com/dwjfzvlsd/image/upload/v1659760480/Bitmap-1_hwcekl.png"
-                  alt=""
-                  className="notifi"
-                />
-                <img
-                  src="https://res.cloudinary.com/dwjfzvlsd/image/upload/v1659760480/Bitmap_mx14hn.png"
-                  alt=""
-                  className="notifi"
-                />
-                <AiOutlinePlusCircle className="addicon" />
+            {isLoggedIn ? (
+              <div className="withoutlogincontainer">
+                <p className="withoutlogin">Login in to Access Data</p>
               </div>
-            </div>
-
-            {isLoggedIn ? <h1>Sign in to get data</h1> : <DashboardDetails />}
+            ) : (
+              <DashboardDetails />
+            )}
           </div>
           <div className="dashboarddisplay2">
-            <p className="spend">Spend Statistics:</p>
-            {isLoggedIn ? <h1>Sign in to get data</h1> : <Spend />}
+            {isLoggedIn ? (
+              <div className="withoutlogincontainer">
+                <p className="withoutlogin">Login in to Access Data</p>
+              </div>
+            ) : (
+              <Spend />
+            )}
           </div>
         </div>
       </div>

@@ -39,7 +39,7 @@
   font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
-  font-size: 0.95vw;
+  font-size: 0.8vw;
   letter-spacing: 1.5px;
   color: #ffffff;
   height: 3vw;
@@ -96,4 +96,12 @@
 }
 .boximage3 {
   width: 4.5vw;
+}
+.spend {
+  font-family: "Baloo";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.7vw;
+  letter-spacing: 0.333333px;
+  color: #262a41;
 }
